@@ -1,8 +1,9 @@
 package com.news.home.adapters;
 
+import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.text.method.LinkMovementMethod;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,7 +51,7 @@ public class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.ItemVi
         NewsItem newsItem = newsFeed.get(position);
         String post = newsItem.getText();
         if(!StringUtils.isEmpty(post)) {
-            holder.tvNewsPost.setText(post);
+            holder.tvNewsPost.setText(Html.fromHtml(post));
         }
 
         User user = newsItem.getUser();
@@ -68,6 +69,18 @@ public class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.ItemVi
                 holder.tvPosterName.setText(posterName);
             }
         }
+
+        if(newsItem.isAnimate()) {
+            // Set the view to fade in
+            setupObjectAnimator(holder.itemView).start();
+            newsItem.setAnimate(false);
+        }
+    }
+
+    private ObjectAnimator setupObjectAnimator(View view) {
+        ObjectAnimator animator = ObjectAnimator.ofFloat(view, "translationY", -500, 0);
+        animator.setDuration(300);
+        return animator;
     }
 
     @Override
@@ -90,8 +103,6 @@ public class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.ItemVi
         public ItemViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
-
-            tvNewsPost.setMovementMethod(LinkMovementMethod.getInstance());
         }
     }
 }

@@ -16,21 +16,15 @@ public class User {
 
     @SerializedName("username")
     @Expose
-    public String username;
+    String username;
     @SerializedName("avatar_image")
     @Expose
-    public AvatarImage avatarImage;
-    @SerializedName("cover_image")
-    @Expose
-    public CoverImage coverImage;
-    @SerializedName("type")
-    @Expose
-    public String type;
+    AvatarImage avatarImage;
     @SerializedName("id")
     @Expose
-    public String id;
+    String id;
     @SerializedName("name")
     @Expose
-    public String name;
+    String name;
 
 }

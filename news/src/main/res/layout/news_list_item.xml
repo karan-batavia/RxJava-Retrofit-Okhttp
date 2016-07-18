@@ -19,6 +19,7 @@
         <TextView
             android:id="@+id/tvNewsPost"
             style="@style/news.post"
+            android:autoLink="web"
             android:layout_toRightOf="@+id/ivUserAvatar"/>
 
         <TextView

@@ -16,21 +16,22 @@ public class NewsItem {
 
     @SerializedName("created_at")
     @Expose
-    public String createdAt;
+    String createdAt;
     @SerializedName("text")
     @Expose
-    public String text;
+    String text;
     @SerializedName("id")
     @Expose
-    public long id;
+    long id;
     @SerializedName("user")
     @Expose
-    public User user;
+    User user;
     @SerializedName("thread_id")
     @Expose
-    public String threadId;
+    String threadId;
     @SerializedName("pagination_id")
     @Expose
-    public String paginationId;
+    String paginationId;
 
+    boolean animate;
 }

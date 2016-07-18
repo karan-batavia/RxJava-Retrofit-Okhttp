@@ -16,15 +16,5 @@ public class AvatarImage {
 
     @SerializedName("url")
     @Expose
-    public String url;
-    @SerializedName("width")
-    @Expose
-    public Integer width;
-    @SerializedName("is_default")
-    @Expose
-    public Boolean isDefault;
-    @SerializedName("height")
-    @Expose
-    public Integer height;
-
+    String url;
 }
