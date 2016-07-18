@@ -15,5 +15,8 @@ Sample Android app demonstrates API call using RxAndroid, Retrofit & Okhttp. It 
 - Support libraries
 - Apache common lang 
 - [Gson](https://github.com/google/gson)
+- [RxAndroid](https://github.com/ReactiveX/RxAndroid)
 - [Retrofit 2](http://square.github.io/retrofit/)
 - [Mockito](http://mockito.org/)
+- [Glide](https://github.com/bumptech/glide)
+- [Butter Knife](https://github.com/JakeWharton/butterknife)
