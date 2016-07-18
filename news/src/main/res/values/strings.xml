@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">ANews</string>
+    <string name="title_activity_feed">Latest News</string>
+</resources>
