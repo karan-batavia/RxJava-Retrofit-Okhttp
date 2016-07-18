@@ -8,7 +8,7 @@ import com.infra.managers.requests.Service;
 import com.infra.managers.responses.ServiceResponse;
 import com.infra.managers.utils.MockServiceUtil;
 import com.infra.managers.utils.ServiceUtil;
-import com.infra.util.LogUtils;
+import com.infra.logging.util.LogUtils;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

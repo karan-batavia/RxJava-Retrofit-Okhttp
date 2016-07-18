@@ -1,4 +1,4 @@
-package com.infra.util;
+package com.infra.logging.util;
 
 import android.app.Activity;
 import android.app.Application;
