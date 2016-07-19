@@ -25,7 +25,8 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class FeedActivity extends AppCompatActivity implements DataObserver<Feed>{
+public class FeedActivity extends AppCompatActivity
+        implements DataObserver<Feed> {
     /**
      * Adding count limit of news. In Future, this limit should come from server side configuration
      */
@@ -55,13 +56,12 @@ public class FeedActivity extends AppCompatActivity implements DataObserver<Feed
         rvNewsFeed.setHasFixedSize(true);
 
         manager = new FeedManager();
-        manager.setObserver(this);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        if(fetchNews) {
+        if (fetchNews) {
             startSubscription();
         }
     }
@@ -69,7 +69,7 @@ public class FeedActivity extends AppCompatActivity implements DataObserver<Feed
     @Override
     protected void onPause() {
         super.onPause();
-        if(fetchNews) {
+        if (fetchNews) {
             stopSubscription();
         }
     }
@@ -77,7 +77,7 @@ public class FeedActivity extends AppCompatActivity implements DataObserver<Feed
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_feed,menu);
+        inflater.inflate(R.menu.menu_feed, menu);
         return true;
     }
 
@@ -86,7 +86,7 @@ public class FeedActivity extends AppCompatActivity implements DataObserver<Feed
         int id = item.getItemId();
         switch (id) {
             case R.id.muSync:
-                if(item.isChecked()) {
+                if (item.isChecked()) {
                     item.setChecked(false);
                     fetchNews = false;
                     stopSubscription();
@@ -103,19 +103,21 @@ public class FeedActivity extends AppCompatActivity implements DataObserver<Feed
     }
 
     private void stopSubscription() {
-        if(manager != null) {
+        if (manager != null) {
+            manager.setObserver(null);
             manager.stopNews();
         }
     }
 
     private void startSubscription() {
-        if(manager != null) {
+        if (manager != null) {
+            manager.setObserver(this);
             manager.getNews();
         }
     }
 
     private void updateMenuItemIcon(MenuItem item, int drawableId) {
-        if(item != null) {
+        if (item != null) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 item.setIcon(ContextCompat.getDrawable(this, drawableId));
             } else {
@@ -130,7 +132,7 @@ public class FeedActivity extends AppCompatActivity implements DataObserver<Feed
 
         manager = null;
         adapter = null;
-        if(newsFeed != null) {
+        if (newsFeed != null) {
             newsFeed.clear();
             newsFeed = null;
         }
@@ -138,28 +140,28 @@ public class FeedActivity extends AppCompatActivity implements DataObserver<Feed
 
     @Override
     public void notifyDataChanged(ServiceResponse<Feed> collection) {
-        if(collection != null) {
+        if (collection != null) {
             Feed feed = collection.getData();
-            if(feed != null) {
+            if (feed != null) {
                 List<NewsItem> newsItems = feed.getData();
-                if(newsItems != null && !newsItems.isEmpty()) {
-                    if(newsFeed.isEmpty()) {
-                        if(newsItems.size() > NEWS_FEED_LIMIT) {
+                if (newsItems != null && !newsItems.isEmpty()) {
+                    if (newsFeed.isEmpty()) {
+                        if (newsItems.size() > NEWS_FEED_LIMIT) {
                             newsFeed.addAll(newsItems.subList(0, NEWS_FEED_LIMIT));
                         } else {
                             newsFeed.addAll(newsItems);
                         }
                     } else {
-                        for(int i=newsItems.size() - 1; i >= 0; i--) {
+                        for (int i = newsItems.size() - 1; i >= 0; i--) {
                             NewsItem item = newsItems.get(i);
-                            if(item != null) {
+                            if (item != null) {
                                 /**
                                  * Adding animation to only newly fetched items.
                                  */
                                 item.setAnimate(true);
                                 newsFeed.add(0, item);
 
-                                if(newsFeed.size() > NEWS_FEED_LIMIT) {
+                                if (newsFeed.size() > NEWS_FEED_LIMIT) {
                                     newsFeed.remove(newsFeed.size() - 1);
                                 }
                             }
@@ -179,7 +181,7 @@ public class FeedActivity extends AppCompatActivity implements DataObserver<Feed
     }
 
     private void scrollToIndex(int position) {
-        if(position < adapter.getItemCount()) {
+        if (position < adapter.getItemCount()) {
             // Scroll to specified position
             rvNewsFeed.smoothScrollToPosition(position);
         }
